@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LoginTextField extends StatefulWidget {
   final bool passwordField;
@@ -12,70 +13,63 @@ class LoginTextField extends StatefulWidget {
   _LoginTextFieldState createState() => _LoginTextFieldState();
 }
 
-/*
-        TextField(
-          decoration: const InputDecoration(
-              border: UnderlineInputBorder(), labelText: 'Enter your username'),
-          obscureText: widget.passwordField,
-        ),
-        IconButton(
-          icon: const Icon(Icons.remove_red_eye_rounded),
-          tooltip: 'Show characters',
-          onPressed: () {},
-        ),
- */
-
 class _LoginTextFieldState extends State<LoginTextField> {
+  TextEditingController txtbdy = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    int maxCharacters = 200;
     bool showPassword = widget.passwordField;
 
-    if (widget.passwordField) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return Container(
+      height: 300,
+      child: Stack(
         children: [
-          Stack(
-            children: [
-              Container(
-                width: 300,
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: UnderlineInputBorder(),
-                      labelText: 'Enter your password'),
-                  obscureText: showPassword,
-                ),
-              ),
-              Positioned(
-                right: 0,
-                bottom: 0,
-                child: IconButton(
-                  icon: const Icon(Icons.remove_red_eye),
-                  tooltip: 'Show password',
-                  onPressed: () {
-                    showPassword = false;
-                    setState(() {});
-                  },
-                ),
-              ),
+          TextField(
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(200),
             ],
-          )
-        ],
-      );
-    } else {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 300,
-            child: TextField(
-              decoration: InputDecoration(
-                  border: UnderlineInputBorder(),
-                  labelText: 'Enter your username'),
-              obscureText: widget.passwordField,
+            onChanged: (v) {
+              setState(() {});
+            },
+            controller: txtbdy,
+            decoration: InputDecoration(
+                hintText: "Body",
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(color: Colors.black, width: 2)),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(color: Colors.black, width: 2))),
+            textAlignVertical: TextAlignVertical.top,
+            expands: true,
+            maxLines: null,
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: EdgeInsets.all(0),
+              child: IconButton(
+                icon: Icon(Icons.clear),
+                onPressed: () {
+                  txtbdy.text = "";
+                },
+              ),
             ),
           ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(txtbdy.text.length.toString() +
+                    '/' +
+                    maxCharacters.toString()),
+              ),
+            ),
+          )
         ],
-      );
-    }
+      ),
+    );
   }
 }
