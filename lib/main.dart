@@ -34,13 +34,55 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[LoginTextField(passwordField: true)],
+          children: [
+            Container(
+              width: double.infinity,
+              height: 300,
+              child: Stack(children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Image(
+                    image: AssetImage('./assets/nature.jpg'),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(40),
+                          topRight: Radius.circular(40)),
+                      color: Colors.amber[200],
+                    ),
+                    width: double.infinity,
+                    height: 100,
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '''Amazon Rainforest''',
+                    maxLines: 20,
+                    style: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ),
+              ]),
+            ),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                color: Colors.amber[200],
+              ),
+            ),
+          ],
         ),
       ),
     );
