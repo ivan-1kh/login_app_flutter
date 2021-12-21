@@ -33,6 +33,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final Color pageAccent = Color(0xFFFFFCC8);
+
     return Scaffold(
       body: SizedBox(
         width: double.infinity,
@@ -46,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Image(
-                    image: AssetImage('./assets/nature.jpg'),
+                    image: AssetImage('./assets/galilee.jpg'),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -57,29 +59,155 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(40),
                           topRight: Radius.circular(40)),
-                      color: Colors.amber[200],
+                      color: pageAccent,
                     ),
                     width: double.infinity,
                     height: 100,
+                    child: Container(
+                      width: double.infinity,
+                      height: 100,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          AspectRatio(
+                            aspectRatio: 1,
+                            child: TextButton(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: Icon(
+                                      Icons.wifi,
+                                    ),
+                                  ),
+                                  Text("WiFi"),
+                                ],
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                          AspectRatio(
+                            aspectRatio: 1,
+                            child: TextButton(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: Icon(
+                                      Icons.umbrella_rounded,
+                                    ),
+                                  ),
+                                  Text("Beach"),
+                                ],
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                          AspectRatio(
+                            aspectRatio: 1,
+                            child: TextButton(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: Icon(
+                                      Icons.pool,
+                                    ),
+                                  ),
+                                  Text("Pool"),
+                                ],
+                              ),
+                              onPressed: () {},
+                            ),
+                          ),
+                          AspectRatio(
+                            aspectRatio: 1,
+                            child: TextButton(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(10),
+                                    child: Icon(
+                                      Icons.bar_chart,
+                                    ),
+                                  ),
+                                  Text("Concert"),
+                                ],
+                              ),
+                              onPressed: () {},
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    '''Amazon Rainforest''',
-                    maxLines: 20,
-                    style: TextStyle(
-                        fontSize: 25.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      '''Sea of Galilee''',
+                      maxLines: 20,
+                      style: TextStyle(
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    width: double.infinity,
+                    height: 100,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(5),
+                          child: IconButton(
+                              onPressed: () {},
+                              icon:
+                                  Icon(Icons.arrow_back, color: Colors.white)),
+                        ),
+                        Expanded(
+                          child: Container(),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(5),
+                          child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.share, color: Colors.white)),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(5),
+                          child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.favorite_border,
+                                  color: Colors.white)),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ]),
             ),
             Expanded(
               child: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    pageAccent,
+                    Color(0xFFE1FFFB),
+                  ],
+                )),
                 width: double.infinity,
-                color: Colors.amber[200],
               ),
             ),
           ],
